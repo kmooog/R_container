@@ -2,6 +2,8 @@
 FROM rocker/verse:3.6.0
 MAINTAINER YOHEI_KUMAGAI
 
+# R
+
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     lbzip2 \
@@ -27,6 +29,7 @@ RUN apt-get update \
     protobuf-compiler \
     sqlite3 \
     tk-dev \
+    wget \
     unixodbc-dev \
   && install2.r --error \
     RColorBrewer \
@@ -58,4 +61,10 @@ RUN apt-get update \
     dichromat \
     ## from bioconductor
     && R -e "BiocManager::install('rhdf5')"
+    && R -e "install.packages(\"glmnet\", dependencies=TRUE)"
+    && R -e "install.packages(\"Rcpp\", dependencies=TRUE)"
+    && R -e "source(\"https://bioconductor.org/biocLite.R\")"
+    && R -e "biocLite(\"qvalue\")"
+RUN wget https://github.com/jessieren/VirFinder/blob/master/linux/VirFinder_1.1.tar.gz
+RUN R CMD INSTALL VirFinder_1.1.tar.gz
 
