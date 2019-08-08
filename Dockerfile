@@ -60,11 +60,9 @@ RUN apt-get update \
     vegan \
     dichromat \
     ## from bioconductor
-    && R -e "BiocManager::install('rhdf5')" \
+    && R -e "BiocManager::install(c('rhdf5','qvalue'))" \
     && R -e "install.packages(\"glmnet\", dependencies=TRUE)" \
-    && R -e "install.packages(\"Rcpp\", dependencies=TRUE)" \
-    && R -e "source(\"https://bioconductor.org/biocLite.R\")" \
-    && R -e "biocLite(\"qvalue\")"
+    && R -e "install.packages(\"Rcpp\", dependencies=TRUE)" 
 RUN wget https://github.com/jessieren/VirFinder/blob/master/linux/VirFinder_1.1.tar.gz
 RUN R CMD INSTALL VirFinder_1.1.tar.gz
 
