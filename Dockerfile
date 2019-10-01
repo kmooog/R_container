@@ -61,9 +61,11 @@ RUN apt-get update \
     dichromat \
     ## from bioconductor
     && R -e "BiocManager::install(c('rhdf5','qvalue'))" \
+    && R -e "BiocManager::install('WGCNA')" \
     && R -e "install.packages(\"glmnet\", dependencies=TRUE)" \
     && R -e "install.packages(\"Rcpp\", dependencies=TRUE)"
 WORKDIR /root    
 RUN git clone https://github.com/jessieren/VirFinder.git 
 RUN R CMD INSTALL /root/VirFinder/linux/VirFinder_1.1.tar.gz
 
+# Jupiter notebook
