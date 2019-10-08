@@ -63,6 +63,7 @@ RUN apt-get update \
     && R -e "BiocManager::install(c('rhdf5','qvalue'))" \
     && R -e "BiocManager::install('WGCNA')" \
     && R -e "install.packages(\"glmnet\", dependencies=TRUE)" \
+    && R -e "install.packages(\"igraph\", deoendencies=TRUE)" \
     && R -e "install.packages(\"Rcpp\", dependencies=TRUE)"
 WORKDIR /root    
 RUN git clone https://github.com/jessieren/VirFinder.git 
