@@ -64,7 +64,10 @@ RUN apt-get update \
     && R -e "BiocManager::install('WGCNA')" \
     && R -e "install.packages(\"glmnet\", dependencies=TRUE)" \
     && R -e "install.packages(\"igraph\", deoendencies=TRUE)" \
-    && R -e "install.packages(\"Rcpp\", dependencies=TRUE)"
+    && R -e "install.packages(\"Rcpp\", dependencies=TRUE)" \
+    && R -e "install.packages(\"dendextend\", deoendencies=TRUE)" \
+    && R -e "install.packages(\"magrittr\", dependencies=TRUE)"
+
 WORKDIR /root    
 RUN git clone https://github.com/jessieren/VirFinder.git 
 RUN R CMD INSTALL /root/VirFinder/linux/VirFinder_1.1.tar.gz
