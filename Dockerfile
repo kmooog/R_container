@@ -66,7 +66,12 @@ RUN apt-get update \
     && R -e "install.packages(\"igraph\", deoendencies=TRUE)" \
     && R -e "install.packages(\"Rcpp\", dependencies=TRUE)" \
     && R -e "install.packages(\"dendextend\", deoendencies=TRUE)" \
+    && R -e "BiocManager::install(c('ggtree'))" \
+    && R -e "install.packages('ape')" \
+    && R -e "install.packages('Biostrings')" \
+    && R -e "BiocManager::install(c('Biostrings'))" \
     && R -e "install.packages(\"magrittr\", dependencies=TRUE)"
+
 
 WORKDIR /root    
 RUN git clone https://github.com/jessieren/VirFinder.git 
