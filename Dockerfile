@@ -72,6 +72,13 @@ RUN apt-get update \
     && R -e "BiocManager::install(c('Biostrings'))" \
     && R -e "install.packages(\"magrittr\", dependencies=TRUE)"
 
+# Install python3 and pip3
+RUN apt-get update && apt-get install -y python3 \
+    python3-pip \
+    build-essential
+
+# Install jupyter
+RUN pip3 install jupyter
 
 WORKDIR /root    
 RUN git clone https://github.com/jessieren/VirFinder.git 
